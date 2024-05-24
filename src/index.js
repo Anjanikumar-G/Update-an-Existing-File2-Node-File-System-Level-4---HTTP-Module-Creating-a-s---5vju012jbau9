@@ -1,17 +1,15 @@
-const fs = require('fs').promises;
-const fileName = 'myfile.txt';
-
-const updateFile = async (fileName, fileContent) => {
-    //Write your code here to overwrite the file content
-    //Don't change function name
-     try {
-        // Use fs.writeFile to update the content of the file
-        await fs.writeFile(fileName, fileContent, 'utf-8');
-        console.log(`File "${fileName}" has been updated successfully.`);
-    } catch (error) {
-        console.error(`Error updating file "${fileName}": ${error.message}`);
-    }
+const fs = require("fs/promises");
+const fileName = "myfile.txt";
+const fileContent = "Newton School";
+const writeFile = async (fileName, fileContent) => {
+  //Write your code here
+  try {
+    await fs.access("myfile.txt");
+    console.log("myfile.txt already exists. Skipping write operation");
+  } catch (error) {
+    await fs.writeFile(fileName, fileContent);
+    console.log("File myfile.txt created and data written successfully!");
+  }
+  //Don't change function name
 };
-
-
-module.exports = updateFile;
+module.exports = writeFile;
